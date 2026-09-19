@@ -1,0 +1,179 @@
+"""Comparacao de algoritmos otimizados e suas complexidades."""
+
+import csv
+import math
+import statistics
+import timeit
+
+import matplotlib.pyplot as plt
+
+
+def fibonacci_memo(n):
+    """Fibonacci com memoizacao: O(n) em tempo e O(n) em memoria."""
+    memoria = [0, 1]
+    for indice in range(2, n + 1):
+        memoria.append(memoria[-1] + memoria[-2])
+    return memoria[n]
+
+
+def merge_sort(n):
+    """Merge sort: O(n log n) em todos os casos."""
+    valores = list(range(n, 0, -1))
+
+    def ordenar(itens):
+        if len(itens) <= 1:
+            return itens
+        meio = len(itens) // 2
+        esquerda = ordenar(itens[:meio])
+        direita = ordenar(itens[meio:])
+        resultado = []
+        indice_esquerda = indice_direita = 0
+        while indice_esquerda < len(esquerda) and indice_direita < len(direita):
+            if esquerda[indice_esquerda] <= direita[indice_direita]:
+                resultado.append(esquerda[indice_esquerda])
+                indice_esquerda += 1
+            else:
+                resultado.append(direita[indice_direita])
+                indice_direita += 1
+        return resultado + esquerda[indice_esquerda:] + direita[indice_direita:]
+
+    return ordenar(valores)
+
+
+def quicksort(n):
+    """Quicksort: O(n log n) em media e O(n^2) no pior caso."""
+    valores = list(range(n, 0, -1))
+
+    def ordenar(itens):
+        if len(itens) <= 1:
+            return itens
+        pivo = itens[len(itens) // 2]
+        menores = [item for item in itens if item < pivo]
+        iguais = [item for item in itens if item == pivo]
+        maiores = [item for item in itens if item > pivo]
+        return ordenar(menores) + iguais + ordenar(maiores)
+
+    return ordenar(valores)
+
+
+def somar_matrizes(esquerda, direita):
+    return [
+        [valor_esquerda + valor_direita for valor_esquerda, valor_direita in zip(linha_esquerda, linha_direita)]
+        for linha_esquerda, linha_direita in zip(esquerda, direita)
+    ]
+
+
+def subtrair_matrizes(esquerda, direita):
+    return [
+        [valor_esquerda - valor_direita for valor_esquerda, valor_direita in zip(linha_esquerda, linha_direita)]
+        for linha_esquerda, linha_direita in zip(esquerda, direita)
+    ]
+
+
+def strassen(n):
+    """Multiplicacao de matrizes por Strassen: O(n^log2(7))."""
+    esquerda = [[1] * n for _ in range(n)]
+    direita = [[2] * n for _ in range(n)]
+
+    def multiplicar(matriz_a, matriz_b):
+        tamanho = len(matriz_a)
+        if tamanho == 1:
+            return [[matriz_a[0][0] * matriz_b[0][0]]]
+        meio = tamanho // 2
+        a11 = [linha[:meio] for linha in matriz_a[:meio]]
+        a12 = [linha[meio:] for linha in matriz_a[:meio]]
+        a21 = [linha[:meio] for linha in matriz_a[meio:]]
+        a22 = [linha[meio:] for linha in matriz_a[meio:]]
+        b11 = [linha[:meio] for linha in matriz_b[:meio]]
+        b12 = [linha[meio:] for linha in matriz_b[:meio]]
+        b21 = [linha[:meio] for linha in matriz_b[meio:]]
+        b22 = [linha[meio:] for linha in matriz_b[meio:]]
+
+        p1 = multiplicar(a11, subtrair_matrizes(b12, b22))
+        p2 = multiplicar(somar_matrizes(a11, a12), b22)
+        p3 = multiplicar(somar_matrizes(a21, a22), b11)
+        p4 = multiplicar(a22, subtrair_matrizes(b21, b11))
+        p5 = multiplicar(somar_matrizes(a11, a22), somar_matrizes(b11, b22))
+        p6 = multiplicar(subtrair_matrizes(a12, a22), somar_matrizes(b21, b22))
+        p7 = multiplicar(subtrair_matrizes(a11, a21), somar_matrizes(b11, b12))
+
+        c11 = somar_matrizes(subtrair_matrizes(somar_matrizes(p5, p4), p2), p6)
+        c12 = somar_matrizes(p1, p2)
+        c21 = somar_matrizes(p3, p4)
+        c22 = somar_matrizes(subtrair_matrizes(somar_matrizes(p5, p1), p3), p7)
+        parte_superior = [a + b for a, b in zip(c11, c12)]
+        parte_inferior = [a + b for a, b in zip(c21, c22)]
+        return parte_superior + parte_inferior
+
+    return multiplicar(esquerda, direita)
+
+
+def medir(funcao, tamanhos, repeticoes, amostras=3):
+    medias = []
+    desvios = []
+    for tamanho in tamanhos:
+        resultados = [
+            timeit.timeit(lambda: funcao(tamanho), number=repeticoes)
+            for _ in range(amostras)
+        ]
+        medias.append(statistics.mean(resultados))
+        desvios.append(statistics.stdev(resultados) if amostras > 1 else 0.0)
+    return medias, desvios
+
+
+configuracoes = [
+    ("Fibonacci memoizado", fibonacci_memo, [10, 25, 50, 100, 200, 400], 10_000, lambda n: n),
+    ("Merge sort", merge_sort, [10, 25, 50, 100, 200, 400], 10, lambda n: n * math.log2(n)),
+    ("Quicksort", quicksort, [10, 25, 50, 100, 200, 400], 10, lambda n: n * math.log2(n)),
+    ("Strassen", strassen, [2, 4, 8, 16], 1, lambda n: n ** math.log2(7)),
+]
+
+medicoes = {}
+for nome, funcao, tamanhos, repeticoes, teoria in configuracoes:
+    medias, desvios = medir(funcao, tamanhos, repeticoes)
+    medicoes[nome] = (tamanhos, medias, desvios, teoria)
+
+with open("complexidades_2.csv", "w", newline="", encoding="utf-8") as arquivo:
+    escritor = csv.writer(arquivo)
+    escritor.writerow([
+        "algoritmo", "n", "tempo_medio_s", "desvio_padrao_s",
+        "tempo_normalizado", "teoria_normalizada",
+    ])
+    for nome, (tamanhos, medias, desvios, teoria) in medicoes.items():
+        referencia_tempo = medias[0]
+        referencia_teoria = teoria(tamanhos[0])
+        escritor.writerows(
+            [nome, tamanho, media, desvio, media / referencia_tempo, teoria(tamanho) / referencia_teoria]
+            for tamanho, media, desvio in zip(tamanhos, medias, desvios)
+        )
+
+print("Algoritmo             | n   | tempo medio (s) | desvio-padrao (s)")
+print("----------------------+-----+------------------+------------------")
+for nome, (tamanhos, medias, desvios, _) in medicoes.items():
+    for tamanho, media, desvio in zip(tamanhos, medias, desvios):
+        print(f"{nome:21} | {tamanho:3} | {media:16.6f} | {desvio:16.6f}")
+
+fig, (ax_real, ax_norm) = plt.subplots(1, 2, figsize=(15, 6))
+for nome, (tamanhos, medias, desvios, teoria) in medicoes.items():
+    referencia_tempo = medias[0]
+    referencia_teoria = teoria(tamanhos[0])
+    normalizados = [media / referencia_tempo for media in medias]
+    teoria_normalizada = [teoria(tamanho) / referencia_teoria for tamanho in tamanhos]
+    ax_real.errorbar(tamanhos, medias, yerr=desvios, fmt="o-", capsize=3, label=nome)
+    ax_norm.plot(tamanhos, normalizados, "o-", label=f"{nome} medido")
+    ax_norm.plot(tamanhos, teoria_normalizada, "--", label=f"{nome} teoria")
+
+for eixo in (ax_real, ax_norm):
+    eixo.set_xscale("log")
+    eixo.set_yscale("log")
+    eixo.grid(True, which="both", alpha=0.3)
+    eixo.legend(fontsize="small")
+ax_real.set_title("Tempos reais")
+ax_real.set_xlabel("Tamanho da entrada")
+ax_real.set_ylabel("Tempo (segundos)")
+ax_norm.set_title("Crescimento relativo: medido x teoria")
+ax_norm.set_xlabel("Tamanho da entrada")
+ax_norm.set_ylabel("Crescimento normalizado")
+fig.tight_layout()
+fig.savefig("complexidades_2.png", dpi=150)
+plt.show()
