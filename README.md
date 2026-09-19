@@ -1,22 +1,25 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://github.com/asessagit/python-lab)
+[![JavaScript](https://img.shields.io/badge/node.js-ready-yellow?logo=node.js)](https://github.com/asessagit/python-lab/blob/master/.devcontainer/Dockerfile)
+[![Rust](https://img.shields.io/badge/rust-ready-orange?logo=rust)](https://github.com/asessagit/python-lab/blob/master/.devcontainer/Dockerfile)
+[![Go](https://img.shields.io/badge/go-ready-00ADD8?logo=go)](https://github.com/asessagit/python-lab/blob/master/.devcontainer/Dockerfile)
 [![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange?logo=jupyter)](https://github.com/asessagit/python-lab/tree/master/Algoritmos/Estrutura_Selecao_Repeticao_Multipla_Escolha)
 [![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)](https://github.com/asessagit/python-lab/tree/master/.devcontainer)
-[![DevContainer](https://img.shields.io/badge/devcontainer-ready-green?logo=docker)](https://github.com/asessagit/python-lab/tree/master/.devcontainer)
+[![DevContainer](https://img.shields.io/badge/devcontainer-estruct__lab-green?logo=docker)](https://github.com/asessagit/python-lab/tree/master/.devcontainer)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](https://github.com/asessagit/python-lab/blob/master/LICENSE)
 
-# 🐍 Python Lab — Fundamentos e Lógica de Programação
+# 🧪 estruct_lab — Fundamentos e Lógica de Programação (multi-linguagem)
 
-Espaço dedicado a experimentos, estudos e pequenos projetos em Python. Reúne exemplos práticos, exercícios e implementações simples para explorar conceitos fundamentais da linguagem — estruturas de controle, funções, manipulação de dados e lógica de programação.
+Espaço dedicado a experimentos, estudos e pequenos projetos de programação. Nasceu focado em Python (estruturas de controle, funções, manipulação de dados e lógica de programação) e o ambiente de desenvolvimento evoluiu para suportar também **JavaScript, Rust e Go**, preparado para receber exercícios nessas linguagens conforme forem surgindo.
 
-Os algoritmos estão organizados por **tópico de estudo**, dentro da pasta `Algoritmos/`.
+Os algoritmos em Python continuam organizados por **tópico de estudo**, dentro da pasta `Algoritmos/`.
 
 ## 📂 Estrutura do repositório
 
 ```
-python-lab/
+python-lab/                                             # nome do projeto no devcontainer: estruct_lab
 ├── .devcontainer/                                    # Ambiente de desenvolvimento containerizado (Docker + VS Code)
-│   ├── Dockerfile
-│   └── devcontainer.json
+│   ├── Dockerfile                                    # Instala Python, Node.js/npm, Rust/Cargo e Go
+│   └── devcontainer.json                             # Projeto "estruct_lab" — instala deps por linguagem via manifests (requirements.txt, package.json, Cargo.toml, go.mod)
 ├── .vscode/
 │   └── settings.json                                 # Configuração do interpretador Python no VS Code
 ├── .gitignore
@@ -156,13 +159,14 @@ Algoritmos que resolvem o problema chamando **a própria função**, reduzindo o
 ## 🚀 Como executar
 
 ### Opção 1 — Dev Container (recomendado)
-O projeto já vem com um ambiente Docker pronto (`.devcontainer/`), baseado em `python:3.11-slim`, com as dependências instaladas automaticamente.
+O projeto (`estruct_lab`) já vem com um ambiente Docker pronto (`.devcontainer/`), baseado em `python:3.11-slim` com Node.js/npm, Rust/Cargo e Go instalados por cima.
 
 1. Abra a pasta no VS Code com a extensão **Dev Containers** instalada.
 2. Selecione **"Reopen in Container"**.
-3. O ambiente já sobe com as extensões `ms-python.python` e `ms-toolsai.jupyter` e com as dependências de `requirements.txt` instaladas.
+3. O `postCreateCommand` instala as dependências automaticamente conforme os manifests presentes no repositório: `pip install -r requirements.txt` sempre roda; `npm install`, `cargo build` e `go mod download` rodam apenas se existirem `package.json`, `Cargo.toml` ou `go.mod`, respectivamente.
+4. O ambiente já sobe com extensões do VS Code para cada linguagem: `ms-python.python`, `ms-toolsai.jupyter`, `dbaeumer.vscode-eslint` (JS), `rust-lang.rust-analyzer` (Rust) e `golang.go` (Go).
 
-### Opção 2 — Ambiente local
+### Opção 2 — Ambiente local (Python)
 ```bash
 git clone https://github.com/asessagit/python-lab.git
 cd python-lab
@@ -176,6 +180,8 @@ Depois, execute qualquer script individualmente a partir da pasta correspondente
 cd Algoritmos/Estrutura_Conjunto_Dados/Vetores
 python3 advinha_vetor.py
 ```
+
+> Hoje todo o conteúdo de `Algoritmos/` ainda é Python — o suporte a JavaScript, Rust e Go está pronto no ambiente, mas ainda sem exercícios nessas linguagens no repositório.
 
 ## 📦 Dependências
 
@@ -198,5 +204,5 @@ Este é um repositório pessoal de estudo. Para sugestões, abra uma *Issue*.
 Este projeto está licenciado sob os termos da [Licença MIT](https://github.com/asessagit/python-lab/blob/master/LICENSE).
 
 ---
-Última atualização: 2026-09-14
+Última atualização: 2026-09-19 (renomeado para estruct_lab — ambiente multi-linguagem)
 Autor: [asessagit](https://github.com/asessagit) (Alex Sessa)
