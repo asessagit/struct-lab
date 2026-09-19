@@ -1,13 +1,13 @@
-[![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://github.com/asessagit/python-lab)
-[![JavaScript](https://img.shields.io/badge/node.js-ready-yellow?logo=node.js)](https://github.com/asessagit/python-lab/blob/master/.devcontainer/Dockerfile)
-[![Rust](https://img.shields.io/badge/rust-ready-orange?logo=rust)](https://github.com/asessagit/python-lab/blob/master/.devcontainer/Dockerfile)
-[![Go](https://img.shields.io/badge/go-ready-00ADD8?logo=go)](https://github.com/asessagit/python-lab/blob/master/.devcontainer/Dockerfile)
-[![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange?logo=jupyter)](https://github.com/asessagit/python-lab/tree/master/Algoritmos/Estrutura_Selecao_Repeticao_Multipla_Escolha)
-[![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)](https://github.com/asessagit/python-lab/tree/master/.devcontainer)
-[![DevContainer](https://img.shields.io/badge/devcontainer-estruct__lab-green?logo=docker)](https://github.com/asessagit/python-lab/tree/master/.devcontainer)
-[![License](https://img.shields.io/badge/license-MIT-yellow)](https://github.com/asessagit/python-lab/blob/master/LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://github.com/asessagit/struct-lab)
+[![JavaScript](https://img.shields.io/badge/node.js-ready-yellow?logo=node.js)](https://github.com/asessagit/struct-lab/blob/master/.devcontainer/Dockerfile)
+[![Rust](https://img.shields.io/badge/rust-ready-orange?logo=rust)](https://github.com/asessagit/struct-lab/blob/master/.devcontainer/Dockerfile)
+[![Go](https://img.shields.io/badge/go-ready-00ADD8?logo=go)](https://github.com/asessagit/struct-lab/blob/master/.devcontainer/Dockerfile)
+[![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange?logo=jupyter)](https://github.com/asessagit/struct-lab/tree/master/Algoritmos/Estrutura_Selecao_Repeticao_Multipla_Escolha)
+[![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)](https://github.com/asessagit/struct-lab/tree/master/.devcontainer)
+[![DevContainer](https://img.shields.io/badge/devcontainer-estruct__lab-green?logo=docker)](https://github.com/asessagit/struct-lab/tree/master/.devcontainer)
+[![License](https://img.shields.io/badge/license-MIT-yellow)](https://github.com/asessagit/struct-lab/blob/master/LICENSE)
 
-# 🧪 estruct_lab — Fundamentos e Lógica de Programação (multi-linguagem)
+# 🧪 struct-lab — Fundamentos e Lógica de Programação (multi-linguagem)
 
 Espaço dedicado a experimentos, estudos e pequenos projetos de programação. Nasceu focado em Python (estruturas de controle, funções, manipulação de dados e lógica de programação) e o ambiente de desenvolvimento evoluiu para suportar também **JavaScript, Rust e Go**, preparado para receber exercícios nessas linguagens conforme forem surgindo.
 
@@ -16,7 +16,7 @@ Os algoritmos em Python continuam organizados por **tópico de estudo**, dentro 
 ## 📂 Estrutura do repositório
 
 ```
-python-lab/                                             # nome do projeto no devcontainer: estruct_lab
+struct-lab/                                             # nome do projeto no devcontainer: estruct_lab (pendente de sincronizar)
 ├── .devcontainer/                                    # Ambiente de desenvolvimento containerizado (Docker + VS Code)
 │   ├── Dockerfile                                    # Instala Python, Node.js/npm, Rust/Cargo e Go
 │   └── devcontainer.json                             # Projeto "estruct_lab" — instala deps por linguagem via manifests (requirements.txt, package.json, Cargo.toml, go.mod)
@@ -168,8 +168,8 @@ O projeto (`estruct_lab`) já vem com um ambiente Docker pronto (`.devcontainer/
 
 ### Opção 2 — Ambiente local (Python)
 ```bash
-git clone https://github.com/asessagit/python-lab.git
-cd python-lab
+git clone https://github.com/asessagit/struct-lab.git
+cd struct-lab
 python3 -m venv .venv
 source .venv/bin/activate      # Linux/macOS
 pip install -r requirements.txt
@@ -201,8 +201,8 @@ Pillow==12.3.0
 Este é um repositório pessoal de estudo. Para sugestões, abra uma *Issue*.
 
 ## 📄 Licença
-Este projeto está licenciado sob os termos da [Licença MIT](https://github.com/asessagit/python-lab/blob/master/LICENSE).
+Este projeto está licenciado sob os termos da [Licença MIT](https://github.com/asessagit/struct-lab/blob/master/LICENSE).
 
 ---
-Última atualização: 2026-09-19 (renomeado para estruct_lab — ambiente multi-linguagem)
+Última atualização: 2026-09-19 (repositório renomeado de python-lab para struct-lab)
 Autor: [asessagit](https://github.com/asessagit) (Alex Sessa)
