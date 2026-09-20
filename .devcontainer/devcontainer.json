@@ -1,5 +1,5 @@
 {
-  "name": "estruct_lab",
+  "name": "struct-lab",
   "dockerFile": "Dockerfile",
   "context": "..",
   "postCreateCommand": "bash -lc 'pip install -r requirements.txt && if [ -f package.json ]; then npm install; fi && if [ -f Cargo.toml ]; then cargo build; fi && if [ -f go.mod ]; then go mod download; fi'",
