@@ -1,17 +1,17 @@
-[![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://github.com/asessagit/struct-lab)
-[![JavaScript](https://img.shields.io/badge/node.js-ready-yellow?logo=node.js)](https://github.com/asessagit/struct-lab/blob/master/.devcontainer/Dockerfile)
-[![Rust](https://img.shields.io/badge/rust-ready-orange?logo=rust)](https://github.com/asessagit/struct-lab/blob/master/.devcontainer/Dockerfile)
-[![Go](https://img.shields.io/badge/go-ready-00ADD8?logo=go)](https://github.com/asessagit/struct-lab/blob/master/.devcontainer/Dockerfile)
-[![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange?logo=jupyter)](https://github.com/asessagit/struct-lab/tree/master/Algoritmos/Estrutura_Selecao_Repeticao_Multipla_Escolha)
+[![Python](https://img.shields.io/badge/python-3.11-blue?logo=python)](https://github.com/asessagit/struct-lab/tree/master/Python)
+[![JavaScript](https://img.shields.io/badge/node.js-ready-yellow?logo=node.js)](https://github.com/asessagit/struct-lab/tree/master/JavaScript)
+[![Rust](https://img.shields.io/badge/rust-ready-orange?logo=rust)](https://github.com/asessagit/struct-lab/tree/master/Rust)
+[![Go](https://img.shields.io/badge/go-ready-00ADD8?logo=go)](https://github.com/asessagit/struct-lab/tree/master/Go)
+[![Jupyter](https://img.shields.io/badge/jupyter-notebook-orange?logo=jupyter)](https://github.com/asessagit/struct-lab/tree/master/Python/Estrutura_Selecao_Repeticao_Multipla_Escolha)
 [![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)](https://github.com/asessagit/struct-lab/tree/master/.devcontainer)
 [![DevContainer](https://img.shields.io/badge/devcontainer-estruct__lab-green?logo=docker)](https://github.com/asessagit/struct-lab/tree/master/.devcontainer)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](https://github.com/asessagit/struct-lab/blob/master/LICENSE)
 
 # 🧪 struct-lab — Fundamentos e Lógica de Programação (multi-linguagem)
 
-Espaço dedicado a experimentos, estudos e pequenos projetos de programação. Nasceu focado em Python (estruturas de controle, funções, manipulação de dados e lógica de programação) e o ambiente de desenvolvimento evoluiu para suportar também **JavaScript, Rust e Go**, preparado para receber exercícios nessas linguagens conforme forem surgindo.
+Espaço dedicado a experimentos, estudos e pequenos projetos de programação. Nasceu focado em Python (estruturas de controle, funções, manipulação de dados e lógica de programação) e o ambiente de desenvolvimento evoluiu para suportar também **JavaScript, Rust e Go**.
 
-Os algoritmos em Python continuam organizados por **tópico de estudo**, dentro da pasta `Algoritmos/`.
+Cada linguagem agora tem sua própria pasta na raiz do repositório. O conteúdo de Python continua organizado por **tópico de estudo**; as demais linguagens começaram com um exemplo de smoke test do ambiente.
 
 ## 📂 Estrutura do repositório
 
@@ -25,7 +25,13 @@ struct-lab/                                             # nome do projeto no dev
 ├── .gitignore
 ├── LICENSE                                            # Licença MIT do projeto
 ├── requirements.txt                                   # Dependências Python do projeto
-└── Algoritmos/
+├── JavaScript/
+│   └── exemplo.js                        # Smoke test: declara e imprime um array de números
+├── Go/
+│   └── exemplo.go                        # Smoke test: declara e imprime um array de números
+├── Rust/
+│   └── exemplo.rs                        # Smoke test: declara e imprime um array de números
+└── Python/
     ├── Estrutura_Conjunto_Dados/                       # Listas, vetores e matrizes
     │   ├── Vetores/
     │   │   ├── advinha_vetor.py          # Jogo de adivinhação com histórico de chutes (vetor)
@@ -73,7 +79,17 @@ struct-lab/                                             # nome do projeto no dev
         └── frames_hanoi/                      # Frames PNG gerados por hanoi_gif.py (saída, não código-fonte)
 ```
 
-## 🎮 Estrutura Conjunto de Dados
+## 🌐 Outras linguagens (JavaScript, Go, Rust)
+
+Cada pasta começa com um `exemplo.*` que serve de **smoke test** do dev container: confirma que o compilador/runtime de cada linguagem está instalado e funcionando, declarando e imprimindo um array de números.
+
+| Linguagem | Arquivo | O que faz |
+|---|---|---|
+| JavaScript | `JavaScript/exemplo.js` | Declara `numerosJS` e imprime o array com `console.log` |
+| Go | `Go/exemplo.go` | Declara `numerosGo` (array de 5 `int`) e imprime com `fmt.Println` |
+| Rust | `Rust/exemplo.rs` | Declara `numeros_rust` (`[i32; 5]`) e imprime com `println!("{:?}", ...)` |
+
+## 🎮 Python — Estrutura Conjunto de Dados
 
 Algoritmos que trabalham com **listas, vetores e matrizes**.
 
@@ -114,7 +130,7 @@ Os seis arquivos `matsoma*` exploram a soma de elementos de uma matriz, em duas 
 | `matsoma_condicao_10_refat.py` | Matriz 4x4 com regra condicional, refatorada com estatísticas (soma, média, máximo, mínimo) |
 | `matsoma_condicao_10_dinamico.py` | Matriz NxM com regra condicional, validação de entrada, estatísticas, soma por linha/coluna e tabela formatada |
 
-## 🔀 Estrutura Seleção, Repetição, Múltipla Escolha
+## 🔀 Python — Estrutura Seleção, Repetição, Múltipla Escolha
 
 Algoritmos que trabalham com **condicionais, laços e múltipla escolha**, sem depender de uma estrutura de dados para funcionar.
 
@@ -122,7 +138,7 @@ Algoritmos que trabalham com **condicionais, laços e múltipla escolha**, sem d
 - **`lab.py`** — Resolve equações do 2º grau (Bhaskara) usando o módulo `cmath`, tratando tanto raízes reais quanto complexas, com validação de entrada (coeficiente `a` não pode ser zero).
 - **`Lab.ipynb`** — Espaço de experimentação interativa em Jupyter para testar trechos de código e anotações de estudo.
 
-## 🧩 Modularização
+## 🧩 Python — Modularização
 
 Algoritmos que separam a lógica em **funções e procedimentos reutilizáveis**, em vez de código sequencial solto.
 
@@ -135,7 +151,7 @@ Algoritmos que separam a lógica em **funções e procedimentos reutilizáveis**
 | `proc_calcular_valor.py` | Procedimento `calcular_desconto()` que aplica desconto por faixa de valor (0%, 10%, 20%) |
 | `proc_calcular_valor_refat.py` | Mesma lógica de desconto, refatorada com validação de entrada e operador ternário |
 
-## 📊 Ordenação / Complexidade (Big-O)
+## 📊 Python — Ordenação / Complexidade (Big-O)
 
 Apesar do nome da pasta, o foco aqui não é só ordenação — são **benchmarks visuais comparando complexidades Big-O** de vários algoritmos (busca, ordenação, recursão, multiplicação de matrizes), medindo tempo real de execução e comparando com o crescimento teórico.
 
@@ -146,7 +162,7 @@ Apesar do nome da pasta, o foco aqui não é só ordenação — são **benchmar
 
 > Os arquivos `.csv`, `.png` e `.gif` dessa pasta são saída gerada pelos scripts ao rodar — não precisam ser editados manualmente.
 
-## 🔁 Recursividade
+## 🔁 Python — Recursividade
 
 Algoritmos que resolvem o problema chamando **a própria função**, reduzindo o problema a casos menores até um caso base.
 
@@ -166,7 +182,9 @@ O projeto (`estruct_lab`) já vem com um ambiente Docker pronto (`.devcontainer/
 3. O `postCreateCommand` instala as dependências automaticamente conforme os manifests presentes no repositório: `pip install -r requirements.txt` sempre roda; `npm install`, `cargo build` e `go mod download` rodam apenas se existirem `package.json`, `Cargo.toml` ou `go.mod`, respectivamente.
 4. O ambiente já sobe com extensões do VS Code para cada linguagem: `ms-python.python`, `ms-toolsai.jupyter`, `dbaeumer.vscode-eslint` (JS), `rust-lang.rust-analyzer` (Rust) e `golang.go` (Go).
 
-### Opção 2 — Ambiente local (Python)
+### Opção 2 — Ambiente local
+
+Clonar e preparar o ambiente Python:
 ```bash
 git clone https://github.com/asessagit/struct-lab.git
 cd struct-lab
@@ -175,16 +193,25 @@ source .venv/bin/activate      # Linux/macOS
 pip install -r requirements.txt
 ```
 
-Depois, execute qualquer script individualmente a partir da pasta correspondente, por exemplo:
+Executar um script Python, a partir da pasta correspondente:
 ```bash
-cd Algoritmos/Estrutura_Conjunto_Dados/Vetores
+cd Python/Estrutura_Conjunto_Dados/Vetores
 python3 advinha_vetor.py
 ```
 
-> Hoje todo o conteúdo de `Algoritmos/` ainda é Python — o suporte a JavaScript, Rust e Go está pronto no ambiente, mas ainda sem exercícios nessas linguagens no repositório.
+Executar os exemplos das outras linguagens, a partir da raiz do repositório:
+```bash
+node JavaScript/exemplo.js
+
+go run Go/exemplo.go
+
+rustc Rust/exemplo.rs -o /tmp/exemplo_rust
+/tmp/exemplo_rust
+```
 
 ## 📦 Dependências
 
+Python (`requirements.txt`):
 ```
 numpy
 pandas
@@ -197,6 +224,8 @@ imageio==2.37.4
 Pillow==12.3.0
 ```
 
+JavaScript, Go e Rust ainda não têm manifests próprios (`package.json`, `go.mod`, `Cargo.toml`) — os exemplos atuais usam só a biblioteca padrão de cada linguagem.
+
 ## 🤝 Contribuindo
 Este é um repositório pessoal de estudo. Para sugestões, abra uma *Issue*.
 
@@ -204,5 +233,5 @@ Este é um repositório pessoal de estudo. Para sugestões, abra uma *Issue*.
 Este projeto está licenciado sob os termos da [Licença MIT](https://github.com/asessagit/struct-lab/blob/master/LICENSE).
 
 ---
-Última atualização: 2026-09-19 (repositório renomeado de python-lab para struct-lab)
+Última atualização: 2026-09-19 (Algoritmos/ renomeada para Python/; adicionadas as pastas JavaScript/, Go/ e Rust/ com exemplos)
 Autor: [asessagit](https://github.com/asessagit) (Alex Sessa)
